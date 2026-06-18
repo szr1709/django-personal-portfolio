@@ -1,0 +1,55 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="{% url 'home' %}">
+      {% if profile.full_name %}{{ profile.full_name }}{% else %}Portfolio{% endif %}
+    </a>
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto align-items-center">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'home' %}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'about' %}">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'skills' %}">Skills</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'projects' %}">Projects</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'resume' %}">Resume</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+        </li>
+        
+        <span class="navbar-text d-none d-lg-inline mx-2 text-secondary">|</span>
+        
+        {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link text-info fw-semibold" href="{% url 'dashboard' %}">Dashboard</a>
+          </li>
+          <li class="nav-item ms-lg-2">
+            <form action="{% url 'logout' %}" method="post" class="d-inline">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-link nav-link border-0 bg-transparent p-0" style="display: inline-block;">Logout</button>
+            </form>
+          </li>
+        {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">Login</a>
+          </li>
+          <li class="nav-item ms-lg-2">
+            <a class="btn btn-outline-light btn-sm px-3" href="{% url 'register' %}">Register</a>
+          </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>

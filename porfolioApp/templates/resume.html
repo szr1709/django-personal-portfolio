@@ -1,0 +1,125 @@
+{% extends 'master/base.html' %}
+
+{% block title %}Resume{% endblock title %}
+
+{% block body %}
+<div class="py-3">
+    {% if profile %}
+        <!-- Header / Contact Info Section -->
+        <div class="mb-5">
+            <h1 class="fw-bold text-dark mb-1">{{ profile.full_name|default:profile.username }}</h1>
+            <p class="lead text-muted fs-5 mb-3">{{ profile.headline }}</p>
+            
+            {% if profile.bio %}
+                <p class="text-secondary small mb-4" style="max-width: 750px; line-height: 1.6;">{{ profile.bio }}</p>
+            {% endif %}
+
+            <!-- Clean Contact Row -->
+            <div class="text-secondary small d-flex flex-wrap gap-md-4 gap-2">
+                {% if profile.email %}<span><i class="bi bi-envelope"></i> {{ profile.email }}</span>{% endif %}
+                {% if profile.phone %}<span><i class="bi bi-telephone"></i> {{ profile.phone }}</span>{% endif %}
+                {% if profile.location %}<span><i class="bi bi-geo-alt"></i> {{ profile.location }}</span>{% endif %}
+            </div>
+        </div>
+
+        <hr class="text-muted my-4">
+
+        <!-- Skills Section -->
+        <div class="row my-4">
+            <div class="col-md-3">
+                <h5 class="fw-bold text-dark text-uppercase small tracking-wider">Core Skills</h5>
+            </div>
+            <div class="col-md-9">
+                <div class="d-flex flex-wrap gap-2">
+                    {% for skill in skills %}
+                        <span class="border px-3 py-1 text-dark bg-white small">
+                            {{ skill.name }}{% if skill.level %} <span class="text-muted text-capitalize">({{ skill.get_level_display|default:skill.level }})</span>{% endif %}
+                        </span>
+                    {% empty %}
+                        <p class="text-muted small">No specialized skills populated.</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <hr class="text-muted my-4">
+
+        <!-- Experience Section -->
+        <div class="row my-4">
+            <div class="col-md-3">
+                <h5 class="fw-bold text-dark text-uppercase small tracking-wider">Experience</h5>
+            </div>
+            <div class="col-md-9">
+                {% for exp in experiences %}
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between align-items-baseline">
+                            <h6 class="fw-bold text-dark mb-0">{{ exp.role }} <span class="text-muted fw-normal">at {{ exp.company }}</span></h6>
+                            <small class="text-muted ms-2">{{ exp.start_date|default:"" }} - {{ exp.end_date|default:"Present" }}</small>
+                        </div>
+                        <p class="text-secondary small mt-2" style="white-space: pre-line;">{{ exp.description }}</p>
+                    </div>
+                {% empty %}
+                    <p class="text-muted small">No professional milestone items logged.</p>
+                {% endfor %}
+            </div>
+        </div>
+
+        <hr class="text-muted my-4">
+
+        <!-- Education Section -->
+        <div class="row my-4">
+            <div class="col-md-3">
+                <h5 class="fw-bold text-dark text-uppercase small tracking-wider">Education</h5>
+            </div>
+            <div class="col-md-9">
+                {% for item in education %}
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between align-items-baseline">
+                            <h6 class="fw-bold text-dark mb-0">{{ item.degree }}</h6>
+                            <small class="text-muted ms-2">{{ item.start_date|default:"" }} - {{ item.end_date|default:"" }}</small>
+                        </div>
+                        <p class="text-muted small mb-1">{{ item.institution }}</p>
+                        {% if item.description %}
+                            <p class="text-secondary small">{{ item.description }}</p>
+                        {% endif %}
+                    </div>
+                {% empty %}
+                    <p class="text-muted small">No academic background logs attached.</p>
+                {% endfor %}
+            </div>
+        </div>
+
+        <hr class="text-muted my-4">
+
+        <!-- Projects Section -->
+        <div class="row my-4 mb-5">
+            <div class="col-md-3">
+                <h5 class="fw-bold text-dark text-uppercase small tracking-wider">Key Projects</h5>
+            </div>
+            <div class="col-md-9">
+                {% for project in projects %}
+                    <div class="mb-4">
+                        <h6 class="fw-bold text-dark mb-1">{{ project.title }}</h6>
+                        {% if project.skills_set %}
+                            <small class="text-muted d-block mb-1">Built with: {{ project.skills_set }}</small>
+                        {% endif %}
+                        <p class="text-secondary small mb-2">{{ project.description }}</p>
+                        {% if project.github_link %}
+                            <div class="small">
+                                <a href="{{ project.github_link }}" target="_blank" class="text-dark text-decoration-none border-bottom">Code Repository</a>
+                            </div>
+                        {% endif %}
+                    </div>
+                {% empty %}
+                    <p class="text-muted small">No active work items to display.</p>
+                {% endfor %}
+            </div>
+        </div>
+
+    {% else %}
+        <div class="py-5 text-center">
+            <p class="text-muted small">No profile configuration found. Make sure database records exist.</p>
+        </div>
+    {% endif %}
+</div>
+{% endblock body %}

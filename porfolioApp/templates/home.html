@@ -1,0 +1,84 @@
+{% extends 'master/base.html' %}
+
+{% block title %}{{ profile.full_name|default:"Portfolio" }}{% endblock title %}
+
+{% block body %}
+<div class="py-4">
+    <div class="mb-5">
+        <h1 class="display-5 fw-bold text-dark mb-2">{{ profile.full_name|default:"Your Name" }}</h1>
+        <p class="fs-5 text-muted mb-3">{{ profile.headline|default:"Software Developer" }}</p>
+        {% if profile.bio %}
+            <p class="text-secondary lead fs-6" style="max-width: 700px; line-height: 1.6;">{{ profile.bio }}</p>
+        {% endif %}
+        <div class="mt-4">
+            <a href="{% url 'contact' %}" class="btn btn-dark btn-sm rounded-0 px-3 me-2">Get In Touch</a>
+            <a href="{% url 'about' %}" class="link-dark text-decoration-none border-bottom small">Read About Me &rarr;</a>
+        </div>
+    </div>
+
+    <hr class="text-muted my-4">
+
+    <div class="row my-4">
+        <div class="col-md-3">
+            <h5 class="fw-bold text-dark text-uppercase tracking-wider small">Skills</h5>
+        </div>
+        <div class="col-md-9">
+            <div class="d-flex flex-wrap gap-2">
+                {% for skill in featured_skills %}
+                    <span class="badge bg-light text-dark border rounded-0 px-3 py-2 fs-6 fw-normal">
+                        {{ skill.name }} <small class="text-muted">({{ skill.get_level_display|default:skill.level }})</small>
+                    </span>
+                {% empty %}
+                    <p class="text-muted small">No technical competencies added yet.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <hr class="text-muted my-4">
+
+    <div class="row my-4">
+        <div class="col-md-3">
+            <h5 class="fw-bold text-dark text-uppercase tracking-wider small">Selected Work</h5>
+        </div>
+        <div class="col-md-9">
+            <div class="row g-4">
+                {% for project in projects %}
+                    <div class="col-12 mb-2">
+                        <h6 class="fw-bold mb-1">
+                            <a href="{% url 'project_detail' project.pk %}" class="text-dark text-decoration-none border-bottom border-dark">{{ project.title }}</a>
+                        </h6>
+                        <p class="text-secondary small mb-2" style="max-width: 600px;">{{ project.description }}</p>
+                        {% if project.github_link %}
+                            <a href="{{ project.github_link }}" target="_blank" class="text-muted small text-decoration-none"><i class="bi bi-github"></i> Source Code</a>
+                        {% endif %}
+                    </div>
+                {% empty %}
+                    <p class="text-muted small">No dynamic showcase items published.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <hr class="text-muted my-4">
+
+    <div class="row my-4 mb-5">
+        <div class="col-md-3">
+            <h5 class="fw-bold text-dark text-uppercase tracking-wider small">Experience</h5>
+        </div>
+        <div class="col-md-9">
+            {% for exp in experiences %}
+                <div class="mb-4">
+                    <div class="d-flex justify-content-between align-items-baseline">
+                        <h6 class="fw-bold text-dark mb-0">{{ exp.role }} <span class="text-muted fw-normal">at {{ exp.company }}</span></h6>
+                        <small class="text-muted ms-2">{{ exp.dates|default:"" }}</small>
+                    </div>
+                    <p class="text-secondary small mt-1" style="max-width: 600px;">{{ exp.description }}</p>
+                </div>
+            {% empty %}
+                <p class="text-muted small">No profile milestones recorded yet.</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock body %}
