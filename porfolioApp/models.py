@@ -8,7 +8,10 @@ class CustomUser(AbstractUser):
     bio = models.TextField(blank=True)
     location = models.CharField(max_length=255, blank=True)
     phone = models.CharField(max_length=25, blank=True)
+    github_link = models.URLField(blank=True)
+    linkedin_link = models.URLField(blank=True)
     profile_picture = models.ImageField(upload_to='profiles/', blank=True, null=True)
+    resume = models.FileField(upload_to='resumes/', blank=True, null=True)
     cv_summary = models.TextField(blank=True)
 
     def __str__(self):

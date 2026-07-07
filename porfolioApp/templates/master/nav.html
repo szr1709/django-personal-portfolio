@@ -1,55 +1,140 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
-  <div class="container">
-    <a class="navbar-brand fw-bold" href="{% url 'home' %}">
-      {% if profile.full_name %}{{ profile.full_name }}{% else %}Portfolio{% endif %}
-    </a>
-    
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto align-items-center">
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'home' %}">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'about' %}">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'skills' %}">Skills</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'projects' %}">Projects</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'resume' %}">Resume</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'contact' %}">Contact</a>
-        </li>
-        
-        <span class="navbar-text d-none d-lg-inline mx-2 text-secondary">|</span>
-        
-        {% if user.is_authenticated %}
-          <li class="nav-item">
-            <a class="nav-link text-info fw-semibold" href="{% url 'dashboard' %}">Dashboard</a>
-          </li>
-          <li class="nav-item ms-lg-2">
-            <form action="{% url 'logout' %}" method="post" class="d-inline">
-              {% csrf_token %}
-              <button type="submit" class="btn btn-link nav-link border-0 bg-transparent p-0" style="display: inline-block;">Logout</button>
-            </form>
-          </li>
-        {% else %}
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'login' %}">Login</a>
-          </li>
-          <li class="nav-item ms-lg-2">
-            <a class="btn btn-outline-light btn-sm px-3" href="{% url 'register' %}">Register</a>
-          </li>
-        {% endif %}
-      </ul>
+<nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+
+        <!-- Logo -->
+        <a class="navbar-brand" href="{% url 'home' %}">
+            <span class="brand-mark" aria-hidden="true">
+                <svg class="icon-svg"><use href="#icon-brand"></use></svg>
+            </span>
+            <span class="brand-copy">
+                <span class="brand-name">
+                    {% if profile.full_name %}
+                        {{ profile.full_name }}
+                    {% else %}
+                        Portfolio
+                    {% endif %}
+                </span>
+                <span class="brand-role">
+                    {{ profile.headline|default:"Developer Portfolio" }}
+                </span>
+            </span>
+        </a>
+
+
+        <!-- Mobile Toggle -->
+        <button class="navbar-toggler"
+                type="button"
+                aria-label="Toggle navigation"
+                aria-expanded="false"
+                data-nav-toggle>
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+
+        <!-- Menu -->
+        <div class="navbar-collapse" id="navbarNav" data-nav-menu>
+
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+
+
+                <li class="nav-item">
+                    <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}"
+                       href="{% url 'home' %}">
+                        <span class="nav-icon" aria-hidden="true"><svg class="icon-svg"><use href="#icon-home"></use></svg></span>
+                        Home
+                    </a>
+                </li>
+
+
+                <li class="nav-item">
+                    <a class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}"
+                       href="{% url 'about' %}">
+                        <span class="nav-icon" aria-hidden="true"><svg class="icon-svg"><use href="#icon-user"></use></svg></span>
+                        About
+                    </a>
+                </li>
+
+
+                <li class="nav-item">
+                    <a class="nav-link {% if request.resolver_match.url_name == 'skills' %}active{% endif %}"
+                       href="{% url 'skills' %}">
+                        <span class="nav-icon" aria-hidden="true"><svg class="icon-svg"><use href="#icon-skills"></use></svg></span>
+                        Skills
+                    </a>
+                </li>
+
+
+                <li class="nav-item">
+                    <a class="nav-link {% if request.resolver_match.url_name == 'projects' %}active{% endif %}"
+                       href="{% url 'projects' %}">
+                        <span class="nav-icon" aria-hidden="true"><svg class="icon-svg"><use href="#icon-projects"></use></svg></span>
+                        Projects
+                    </a>
+                </li>
+
+
+                <li class="nav-item">
+                    <a class="nav-link {% if request.resolver_match.url_name == 'resume' %}active{% endif %}"
+                       href="{% url 'resume' %}">
+                        <span class="nav-icon" aria-hidden="true"><svg class="icon-svg"><use href="#icon-resume"></use></svg></span>
+                        Resume
+                    </a>
+                </li>
+
+
+                <li class="nav-item">
+                    <a class="nav-link {% if request.resolver_match.url_name == 'contact' %}active{% endif %}"
+                       href="{% url 'contact' %}">
+                        <span class="nav-icon" aria-hidden="true"><svg class="icon-svg"><use href="#icon-contact"></use></svg></span>
+                        Contact
+                    </a>
+                </li>
+
+
+
+                {% if user.is_authenticated %}
+
+                <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+                    <a href="{% url 'dashboard' %}" 
+                       class="btn btn-light">
+                        <span class="action-icon" aria-hidden="true"><svg class="icon-svg"><use href="#icon-dashboard"></use></svg></span>
+                        Dashboard
+                    </a>
+                </li>
+
+                {% if user.is_staff or user.is_superuser %}
+                <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+                    <a href="{% url 'register' %}"
+                       class="btn btn-outline-light">
+                        <span class="action-icon" aria-hidden="true"><svg class="icon-svg"><use href="#icon-plus"></use></svg></span>
+                        Register
+                    </a>
+                </li>
+                {% endif %}
+
+                <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+
+                    <form method="POST" action="{% url 'logout' %}">
+                        {% csrf_token %}
+
+                        <button class="btn btn-outline-light">
+                            <span class="action-icon" aria-hidden="true"><svg class="icon-svg"><use href="#icon-logout"></use></svg></span>
+                            Logout
+                        </button>
+
+                    </form>
+
+                </li>
+
+
+                {% endif %}
+
+
+            </ul>
+
+        </div>
+
     </div>
-  </div>
 </nav>

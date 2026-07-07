@@ -3,101 +3,255 @@
 {% block title %}Dashboard{% endblock title %}
 
 {% block body %}
-<div class="py-3">
-    <div class="d-flex justify-content-between align-items-center border-bottom pb-3 mb-4">
-        <div>
-            <h3 class="fw-bold text-dark mb-0">Dashboard</h3>
-            <p class="text-muted small mb-0">Manage your live portfolio records smoothly.</p>
+<div class="container py-5">
+
+    <!-- Dashboard Header -->
+    <div class="dashboard-header p-4 mb-5">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center">
+
+            <div>
+                <span class="badge bg-primary-subtle text-primary px-3 py-2 rounded-pill mb-2">
+                    Portfolio Management
+                </span>
+
+                <h2 class="fw-bold mb-1">
+                    Dashboard
+                </h2>
+
+                <p class="text-muted mb-0">
+                    Manage your live portfolio records smoothly.
+                </p>
+            </div>
+
+            <a class="btn btn-primary rounded-pill px-4 mt-3 mt-md-0 shadow-sm"
+               href="{% url 'profile_edit' %}">
+                Edit Profile
+            </a>
+
         </div>
-        <div>
-            <a class="btn btn-outline-dark btn-sm rounded-0" href="{% url 'profile_edit' %}">Edit Profile</a>
+    </div>
+
+    <div class="dashboard-card mb-5">
+        <div class="dashboard-card-header">
+            <div>
+                <h5>Resume File</h5>
+                <p class="text-muted mb-0">
+                    Upload or replace the downloadable resume shown on the home and resume pages.
+                </p>
+            </div>
+
+            <a href="{% url 'profile_edit' %}"
+               class="btn btn-outline-primary rounded-pill px-4">
+                {% if user.resume %}Replace Resume{% else %}Upload Resume{% endif %}
+            </a>
         </div>
+
+        {% if user.resume %}
+        <div class="resume-cta">
+            <a href="{{ user.resume.url }}"
+               class="btn btn-primary rounded-pill px-4"
+               download>
+                <span class="social-logo" aria-hidden="true"><svg class="icon-svg"><use href="#icon-download"></use></svg></span>
+                Download Current Resume
+            </a>
+            <span class="resume-note">{{ user.resume.name }}</span>
+        </div>
+        {% else %}
+        <p class="resume-note mb-0">No resume file uploaded yet.</p>
+        {% endif %}
     </div>
 
     <div class="row g-4">
-        <div class="col-md-6 mb-3">
-            <div class="d-flex justify-content-between align-items-center mb-2">
-                <h5 class="fw-bold text-dark mb-0 small text-uppercase">Skills</h5>
-                <a class="text-success text-decoration-none small" href="{% url 'skill_create' %}">+ Add</a>
-            </div>
-            <div class="border-top">
+
+        <!-- Skills -->
+        <div class="col-lg-6">
+            <div class="dashboard-card h-100">
+
+                <div class="dashboard-card-header">
+                    <h5>Skills</h5>
+                    <a href="{% url 'skill_create' %}" class="btn btn-success btn-sm rounded-pill">
+                        + Add
+                    </a>
+                </div>
+
                 {% for skill in skills %}
-                    <div class="d-flex justify-content-between align-items-center border-bottom py-2">
-                        <span class="small text-dark">{{ skill.name }} <small class="text-muted">({{ skill.level }})</small></span>
-                        <div>
-                            <a class="text-primary text-decoration-none small me-2" href="{% url 'skill_edit' skill.pk %}">Edit</a>
-                            <a class="text-danger text-decoration-none small" href="{% url 'skill_delete' skill.pk %}">Delete</a>
-                        </div>
+                <div class="dashboard-item">
+                    <span>
+                        {{ skill.name }}
+                        <small class="text-muted">({{ skill.level }})</small>
+                    </span>
+
+                    <div>
+                        <a href="{% url 'skill_edit' skill.pk %}" class="action-edit me-3">
+                            Edit
+                        </a>
+
+                        <a href="{% url 'skill_delete' skill.pk %}" class="action-delete">
+                            Delete
+                        </a>
                     </div>
+                </div>
+
                 {% empty %}
-                    <p class="text-muted small py-2">No skills registered.</p>
+
+                <p class="text-muted text-center py-4">
+                    No skills registered.
+                </p>
+
                 {% endfor %}
+
             </div>
         </div>
 
-        <div class="col-md-6 mb-3">
-            <div class="d-flex justify-content-between align-items-center mb-2">
-                <h5 class="fw-bold text-dark mb-0 small text-uppercase">Projects</h5>
-                <a class="text-success text-decoration-none small" href="{% url 'project_create' %}">+ Add</a>
-            </div>
-            <div class="border-top">
+        <!-- Projects -->
+        <div class="col-lg-6">
+            <div class="dashboard-card h-100">
+
+                <div class="dashboard-card-header">
+                    <h5>Projects</h5>
+
+                    <a href="{% url 'project_create' %}" class="btn btn-success btn-sm rounded-pill">
+                        + Add
+                    </a>
+                </div>
+
                 {% for project in projects %}
-                    <div class="d-flex justify-content-between align-items-center border-bottom py-2">
-                        <span class="small text-dark text-truncate style-title" style="max-width: 60%;">{{ project.title }}</span>
-                        <div>
-                            <a class="text-primary text-decoration-none small me-2" href="{% url 'project_edit' project.pk %}">Edit</a>
-                            <a class="text-danger text-decoration-none small" href="{% url 'project_delete' project.pk %}">Delete</a>
-                        </div>
+                <div class="dashboard-item">
+
+                    <span class="text-truncate style-title" style="max-width:60%;">
+                        {{ project.title }}
+                    </span>
+
+                    <div>
+
+                        <a href="{% url 'project_edit' project.pk %}" class="action-edit me-3">
+                            Edit
+                        </a>
+
+                        <a href="{% url 'project_delete' project.pk %}" class="action-delete">
+                            Delete
+                        </a>
+
                     </div>
+
+                </div>
+
                 {% empty %}
-                    <p class="text-muted small py-2">No projects registered.</p>
+
+                <p class="text-muted text-center py-4">
+                    No projects registered.
+                </p>
+
                 {% endfor %}
+
             </div>
         </div>
 
-        <div class="col-md-6 mb-3">
-            <div class="d-flex justify-content-between align-items-center mb-2">
-                <h5 class="fw-bold text-dark mb-0 small text-uppercase">Experience</h5>
-                <a class="text-success text-decoration-none small" href="{% url 'experience_create' %}">+ Add</a>
-            </div>
-            <div class="border-top">
+        <!-- Experience -->
+        <div class="col-lg-6">
+            <div class="dashboard-card h-100">
+
+                <div class="dashboard-card-header">
+
+                    <h5>Experience</h5>
+
+                    <a href="{% url 'experience_create' %}" class="btn btn-success btn-sm rounded-pill">
+                        + Add
+                    </a>
+
+                </div>
+
                 {% for experience in experiences %}
-                    <div class="d-flex justify-content-between align-items-center border-bottom py-2">
-                        <span class="small text-dark">{{ experience.role }} <small class="text-muted">({{ experience.company }})</small></span>
-                        <div>
-                            <a class="text-primary text-decoration-none small me-2" href="{% url 'experience_edit' experience.pk %}">Edit</a>
-                            <a class="text-danger text-decoration-none small" href="{% url 'experience_delete' experience.pk %}">Delete</a>
-                        </div>
+                <div class="dashboard-item">
+
+                    <span>
+                        {{ experience.role }}
+                        <small class="text-muted">({{ experience.company }})</small>
+                    </span>
+
+                    <div>
+
+                        <a href="{% url 'experience_edit' experience.pk %}" class="action-edit me-3">
+                            Edit
+                        </a>
+
+                        <a href="{% url 'experience_delete' experience.pk %}" class="action-delete">
+                            Delete
+                        </a>
+
                     </div>
+
+                </div>
+
                 {% empty %}
-                    <p class="text-muted small py-2">No experience tracked.</p>
+
+                <p class="text-muted text-center py-4">
+                    No experience tracked.
+                </p>
+
                 {% endfor %}
+
             </div>
         </div>
 
-        <div class="col-md-6 mb-3">
-            <div class="d-flex justify-content-between align-items-center mb-2">
-                <h5 class="fw-bold text-dark mb-0 small text-uppercase">Education</h5>
-                <a class="text-success text-decoration-none small" href="{% url 'education_create' %}">+ Add</a>
-            </div>
-            <div class="border-top">
+        <!-- Education -->
+        <div class="col-lg-6">
+            <div class="dashboard-card h-100">
+
+                <div class="dashboard-card-header">
+
+                    <h5>Education</h5>
+
+                    <a href="{% url 'education_create' %}" class="btn btn-success btn-sm rounded-pill">
+                        + Add
+                    </a>
+
+                </div>
+
                 {% for education_item in education %}
-                    <div class="d-flex justify-content-between align-items-center border-bottom py-2">
-                        <span class="small text-dark">{{ education_item.degree }} <small class="text-muted">({{ education_item.institution }})</small></span>
-                        <div>
-                            <a class="text-primary text-decoration-none small me-2" href="{% url 'education_edit' education_item.pk %}">Edit</a>
-                            <a class="text-danger text-decoration-none small" href="{% url 'education_delete' education_item.pk %}">Delete</a>
-                        </div>
+                <div class="dashboard-item">
+
+                    <span>
+                        {{ education_item.degree }}
+                        <small class="text-muted">
+                            ({{ education_item.institution }})
+                        </small>
+                    </span>
+
+                    <div>
+
+                        <a href="{% url 'education_edit' education_item.pk %}" class="action-edit me-3">
+                            Edit
+                        </a>
+
+                        <a href="{% url 'education_delete' education_item.pk %}" class="action-delete">
+                            Delete
+                        </a>
+
                     </div>
+
+                </div>
+
                 {% empty %}
-                    <p class="text-muted small py-2">No credentials listed.</p>
+
+                <p class="text-muted text-center py-4">
+                    No credentials listed.
+                </p>
+
                 {% endfor %}
+
             </div>
         </div>
+
     </div>
 
-    <div class="border-top mt-4 pt-3 text-end">
-        <a href="{% url 'messages_view' %}" class="text-muted text-decoration-none small">Go to Messages Box &rarr;</a>
+    <div class="text-end mt-5">
+
+        <a href="{% url 'messages_view' %}" class="btn btn-outline-primary rounded-pill px-4">
+            Messages &rarr;
+        </a>
+
     </div>
+
 </div>
 {% endblock body %}

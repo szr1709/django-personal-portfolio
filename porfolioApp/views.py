@@ -133,7 +133,14 @@ def contact_view(request):
 # ==================== AUTHENTICATION VIEWS ====================
 
 def register_view(request):
-    """User registration page."""
+    """User registration page for logged-in admins only."""
+    if not request.user.is_authenticated:
+        return redirect('home')
+
+    if not (request.user.is_staff or request.user.is_superuser):
+        messages.error(request, 'Only an admin can create new accounts.')
+        return redirect('home')
+
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():

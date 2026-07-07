@@ -3,50 +3,158 @@
 {% block title %}{{ project.title }}{% endblock title %}
 
 {% block body %}
-<div class="py-3">
+<div class="container py-5">
+
+    <!-- Back Button -->
     <div class="mb-4">
-        <a href="{% url 'projects' %}" class="text-muted text-decoration-none small">&larr; Back to Projects List</a>
+        <a href="{% url 'projects' %}"
+           class="btn btn-outline-primary rounded-pill">
+            &larr; Back to Projects
+        </a>
+    </div>
+
+    <!-- Hero -->
+    <div class="project-hero mb-5">
+
+        <span class="badge bg-primary-subtle text-primary rounded-pill px-3 py-2 mb-3">
+            Project Showcase
+        </span>
+
+        <h1 class="display-5 fw-bold mb-3">
+            {{ project.title }}
+        </h1>
+
+        {% if project.start_date %}
+        <p class="text-muted mb-0">
+
+            <i class="bi bi-calendar-event me-2"></i>
+
+            {{ project.start_date|date:"F Y" }}
+
+            -
+
+            {% if project.end_date %}
+                {{ project.end_date|date:"F Y" }}
+            {% else %}
+                Present
+            {% endif %}
+
+        </p>
+        {% endif %}
+
     </div>
 
     <div class="row g-4">
-        <div class="col-md-8">
-            <h1 class="display-6 fw-bold text-dark mb-1">{{ project.title }}</h1>
-            
-            <p class="text-muted small mb-4">
-                {% if project.start_date %}
-                    Timeline: {{ project.start_date|date:"F Y" }} - {% if project.end_date %}{{ project.end_date|date:"F Y" }}{% else %}Present{% endif %}
-                {% endif %}
-            </p>
 
-            <h5 class="fw-bold text-dark text-uppercase small tracking-wider mt-4">Project Description</h5>
-            <p class="text-secondary small mt-2" style="white-space: pre-line; line-height: 1.7;">{{ project.description }}</p>
+        <!-- Left -->
 
-            <div class="mt-4 pt-2">
+        <div class="col-lg-8">
+
+            <div class="project-details-card">
+
+                <h4 class="section-title">
+                    Project Description
+                </h4>
+
+                <p class="project-description">
+                    {{ project.description }}
+                </p>
+
                 {% if project.github_link %}
-                    <a href="{{ project.github_link }}" target="_blank" class="btn btn-dark btn-sm rounded-0 px-3 me-2">
-                        <i class="bi bi-github"></i> Source Repository
+
+                <div class="mt-4">
+
+                    <a href="{{ project.github_link }}"
+                       target="_blank"
+                       class="btn btn-primary rounded-pill px-4">
+
+                        <i class="bi bi-github me-2"></i>
+
+                        Source Repository
+
                     </a>
-                {% endif %}
-            </div>
-        </div>
 
-        <div class="col-md-4">
-            <div class="border-top pt-3 mt-md-5">
-                <h6 class="fw-bold text-dark text-uppercase small tracking-wider mb-3">Project Specs</h6>
-                
-                {% if project.skills_set %}
-                    <div class="mb-3">
-                        <span class="text-muted d-block small">Technologies Used</span>
-                        <span class="text-dark small fw-semibold">{{ project.skills_set }}</span>
-                    </div>
-                {% endif %}
-
-                <div class="mb-3">
-                    <span class="text-muted d-block small">Created</span>
-                    <span class="text-dark small fw-semibold">{{ project.created_at|date:"F Y" }}</span>
                 </div>
+
+                {% endif %}
+
             </div>
+
         </div>
+
+        <!-- Right -->
+
+        <div class="col-lg-4">
+
+            <div class="project-card">
+
+                <h4 class="section-title mb-4">
+
+                    Project Details
+
+                </h4>
+
+                {% if project.skills_set %}
+
+                <div class="project-detail">
+
+                    <div class="detail-icon">
+
+                        <i class="bi bi-code-slash"></i>
+
+                    </div>
+
+                    <div>
+
+                        <small class="text-muted d-block">
+
+                            Technologies Used
+
+                        </small>
+
+                        <strong>
+
+                            {{ project.skills_set }}
+
+                        </strong>
+
+                    </div>
+
+                </div>
+
+                {% endif %}
+
+                <div class="project-detail mt-4">
+
+                    <div class="detail-icon">
+
+                        <i class="bi bi-calendar3"></i>
+
+                    </div>
+
+                    <div>
+
+                        <small class="text-muted d-block">
+
+                            Created
+
+                        </small>
+
+                        <strong>
+
+                            {{ project.created_at|date:"F Y" }}
+
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
+
 </div>
 {% endblock body %}

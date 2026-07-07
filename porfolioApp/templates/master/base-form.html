@@ -2,14 +2,23 @@
 {% load crispy_forms_tags %}
 
 {% block body %}
-<h1>{{form_name}}</h1>
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-7">
+            <div class="form-card">
+                <h1 class="form-title">{{ form_name }}</h1>
+                <p class="form-subtitle">Please fill in the details below to continue.</p>
 
-    {{ form_data|crispy }}
-  
-  <button type="submit" class="btn btn-primary">{{form_btn}}</button>
-</form>
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
 
+                    {{ form_data|crispy }}
+
+                    <button type="submit" class="btn btn-primary rounded-pill px-4 mt-3">{{ form_btn }}</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock body %}
 

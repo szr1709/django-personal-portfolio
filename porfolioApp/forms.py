@@ -12,10 +12,33 @@ class UserRegisterForm(UserCreationForm):
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = CustomUser
-        fields = ['email', 'full_name', 'headline', 'bio', 'location', 'phone', 'profile_picture', 'cv_summary']
+        fields = [
+            'email',
+            'full_name',
+            'headline',
+            'bio',
+            'location',
+            'phone',
+            'github_link',
+            'linkedin_link',
+            'profile_picture',
+            'resume',
+            'cv_summary',
+        ]
         widgets = {
             'bio': forms.Textarea(attrs={'rows': 3}),
             'cv_summary': forms.Textarea(attrs={'rows': 3}),
+        }
+        labels = {
+            'github_link': 'GitHub profile link',
+            'linkedin_link': 'LinkedIn profile link',
+            'profile_picture': 'Profile photo',
+            'resume': 'Resume file',
+        }
+        help_texts = {
+            'github_link': 'Paste your full GitHub URL, for example https://github.com/username.',
+            'linkedin_link': 'Paste your full LinkedIn URL, for example https://www.linkedin.com/in/username/.',
+            'resume': 'Upload the latest version of your resume. PDF is recommended.',
         }
 
 

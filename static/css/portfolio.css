@@ -1,0 +1,1168 @@
+/* ==========================================================
+   PORTFOLIO.CSS
+   Part 1 - Home | About | Skills
+========================================================== */
+
+
+/* ==========================================================
+   Shared Portfolio Components
+========================================================== */
+
+.hero-card,
+.portfolio-card,
+.experience-card,
+.about-card,
+.details-card,
+.content-card,
+.project-card,
+.project-details-card,
+.resume-card,
+.contact-card,
+.dashboard-card,
+.message-card,
+.directory-card,
+.empty-card,
+.empty-state,
+.empty-projects,
+.empty-resume,
+.form-card{
+    background:#fff !important;
+    border:1px solid #e7efff !important;
+    border-radius:22px !important;
+    box-shadow:0 12px 30px rgba(13, 110, 253, 0.08) !important;
+    transition:.35s !important;
+}
+
+.hero-card:hover,
+.portfolio-card:hover,
+.experience-card:hover,
+.about-card:hover,
+.details-card:hover,
+.content-card:hover,
+.project-card:hover,
+.project-details-card:hover,
+.resume-card:hover,
+.contact-card:hover,
+.dashboard-card:hover,
+.message-card:hover,
+.directory-card:hover,
+.empty-card:hover,
+.empty-state:hover,
+.empty-projects:hover,
+.empty-resume:hover,
+.form-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 20px 45px rgba(13,110,253,.15);
+}
+
+.page-hero,
+.hero-section,
+.projects-header,
+.about-hero,
+.resume-header,
+.dashboard-header,
+.messages-header,
+.contact-card,
+.dashboard-card,
+.message-card,
+.project-card,
+.project-details-card,
+.about-card,
+.resume-card,
+.portfolio-card,
+.experience-card,
+.content-card,
+.empty-card,
+.empty-state,
+.empty-projects,
+.empty-resume,
+.form-card{
+    background:linear-gradient(135deg,#ffffff 0%, #f8fbff 100%);
+    border:1px solid #dce8ff;
+    border-radius:24px;
+}
+
+.page-hero{
+    padding:50px;
+    margin-bottom:50px;
+}
+
+.page-hero h1,
+.page-hero h2{
+    margin-bottom:12px;
+}
+
+.page-hero p{
+    max-width:760px;
+    color:#666;
+}
+
+.content-card{
+    background:#fff;
+    border-radius:22px;
+    padding:30px;
+    box-shadow:0 10px 25px rgba(0,0,0,.06);
+    transition:.35s;
+}
+
+.content-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 20px 45px rgba(13,110,253,.15);
+}
+
+.section-heading,
+.section-title,
+.resume-title{
+    color:#1d4ed8;
+    font-weight:700;
+    margin-bottom:22px;
+}
+
+.info-box{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    margin-bottom:18px;
+}
+
+.info-icon{
+    width:48px;
+    height:48px;
+    border-radius:14px;
+    background:#eef5ff;
+    color:#0d6efd;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:1.2rem;
+    transition:.3s;
+}
+
+.info-box:hover .info-icon{
+    background:#0d6efd;
+    color:#fff;
+}
+
+
+/* ==========================================================
+   Home
+========================================================== */
+
+.hero-section{
+    background:linear-gradient(135deg,#f8fbff,#eef5ff);
+    border-radius:28px;
+    padding:65px;
+    border:1px solid #dce8ff;
+    margin-bottom:60px;
+}
+
+.hero-section h1{
+    margin-bottom:18px;
+}
+
+.hero-section p{
+    max-width:720px;
+    color:#666;
+    line-height:1.9;
+}
+
+.featured-section{
+    margin-top:70px;
+}
+
+.featured-title{
+    margin-bottom:25px;
+    font-weight:700;
+}
+
+.featured-card{
+    background:#fff;
+    border-radius:20px;
+    padding:28px;
+    box-shadow:0 10px 25px rgba(0,0,0,.06);
+    transition:.35s;
+    height:100%;
+}
+
+.featured-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 20px 45px rgba(13,110,253,.15);
+}
+
+.featured-card h5{
+    margin-bottom:15px;
+}
+
+.featured-card p{
+    color:#666;
+    line-height:1.8;
+}
+
+
+/* ==========================================================
+   About
+========================================================== */
+
+.about-hero{
+    background:linear-gradient(135deg,#f8fbff,#eef5ff);
+    border:1px solid #dce8ff;
+    border-radius:24px;
+    padding:50px;
+    margin-bottom:40px;
+}
+
+.about-card{
+    background:#fff;
+    border-radius:22px;
+    padding:35px;
+    box-shadow:0 10px 25px rgba(0,0,0,.06);
+    transition:.35s;
+}
+
+.about-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 20px 45px rgba(13,110,253,.15);
+}
+
+.about-text{
+    white-space:pre-line;
+    line-height:1.9;
+    color:#555;
+}
+
+.details-card{
+    background:#fff;
+    border-radius:20px;
+    padding:30px;
+    box-shadow:0 10px 25px rgba(0,0,0,.06);
+}
+
+.details-item{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    margin-bottom:22px;
+}
+
+.details-item:last-child{
+    margin-bottom:0;
+}
+
+.details-icon{
+    width:50px;
+    height:50px;
+    border-radius:14px;
+    background:#eef5ff;
+    color:#0d6efd;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    transition:.3s;
+}
+
+.details-item:hover .details-icon{
+    background:#0d6efd;
+    color:#fff;
+}
+
+
+/* ==========================================================
+   Skills
+========================================================== */
+
+.hero-card{
+    padding:32px;
+    text-align:center;
+}
+
+.hero-icon{
+    width:72px;
+    height:72px;
+    border-radius:20px;
+    background:linear-gradient(135deg,#eef5ff,#dce8ff);
+    color:#0d6efd;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:1.8rem;
+    margin:0 auto;
+}
+
+.portfolio-card,
+.experience-card,
+.about-card,
+.details-card,
+.content-card,
+.project-card,
+.project-details-card,
+.resume-card,
+.contact-card,
+.dashboard-card,
+.message-card,
+.directory-card,
+.empty-card,
+.empty-state,
+.empty-projects,
+.empty-resume,
+.form-card{
+    padding:30px;
+}
+
+.detail-item{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    margin-bottom:18px;
+}
+
+.detail-item:last-child{
+    margin-bottom:0;
+}
+
+.detail-icon{
+    width:50px;
+    height:50px;
+    border-radius:14px;
+    background:#eef5ff;
+    color:#0d6efd;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    transition:.3s;
+}
+
+.detail-item:hover .detail-icon{
+    background:#0d6efd;
+    color:#fff;
+}
+
+.nav-card{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:14px 16px;
+    border-radius:14px;
+    background:#f8fbff;
+    color:#212529;
+    border:1px solid #dce8ff;
+    transition:.3s;
+}
+
+.nav-card:hover{
+    background:#0d6efd;
+    color:#fff;
+}
+
+.contact-icon{
+    width:64px;
+    height:64px;
+    border-radius:18px;
+    background:linear-gradient(135deg,#eef5ff,#dce8ff);
+    color:#0d6efd;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:1.6rem;
+}
+
+.contact-info-item{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:10px 0;
+    color:#666;
+}
+
+.dashboard-card-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:18px;
+}
+
+.action-edit,
+.action-delete{
+    color:#0d6efd;
+    font-weight:600;
+    text-decoration:none;
+}
+
+.action-delete{
+    color:#dc3545;
+}
+
+.action-edit:hover,
+.action-delete:hover{
+    text-decoration:underline;
+}
+
+.style-title{
+    display:block;
+    font-weight:600;
+}
+
+.empty-message-card{
+    background:#fff;
+    border-radius:24px;
+    padding:70px 40px;
+    text-align:center;
+    box-shadow:0 10px 25px rgba(0,0,0,.06);
+}
+
+.form-card{
+    padding:36px;
+}
+
+.form-title{
+    font-size:1.8rem;
+    margin-bottom:8px;
+}
+
+.form-subtitle{
+    color:#6c757d;
+    margin-bottom:24px;
+}
+
+.skills-grid{
+    display:flex;
+    flex-wrap:wrap;
+    gap:18px;
+}
+
+.skill-badge{
+    background:#eef5ff;
+    color:#1d4ed8;
+    padding:12px 22px;
+    border-radius:50px;
+    border:1px solid #dce8ff;
+    font-weight:600;
+    transition:.35s;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+}
+
+.skill-badge small{
+    color:#6c757d;
+    transition:.3s;
+}
+
+.skill-badge:hover{
+    background:#2563eb;
+    color:#fff;
+    transform:translateY(-4px);
+}
+
+.skill-badge:hover small{
+    color:#fff;
+}
+
+.empty-state{
+    background:#fff;
+    border-radius:22px;
+    padding:70px 30px;
+    text-align:center;
+    box-shadow:0 10px 25px rgba(0,0,0,.06);
+}
+
+.empty-state i{
+    font-size:4rem;
+    color:#0d6efd;
+    margin-bottom:20px;
+}
+
+
+/* ==========================================================
+   Responsive
+========================================================== */
+
+@media (max-width:992px){
+
+    .hero-section,
+    .page-hero{
+        padding:40px;
+    }
+
+}
+
+@media (max-width:768px){
+
+    .hero-section,
+    .page-hero{
+        padding:30px;
+    }
+
+    .about-card,
+    .details-card,
+    .content-card{
+        padding:25px;
+    }
+
+}
+
+@media (max-width:576px){
+
+    .skill-badge{
+        width:100%;
+        justify-content:center;
+    }
+
+    .info-box,
+    .details-item{
+        align-items:flex-start;
+    }
+
+}
+
+/* ==========================================================
+   PORTFOLIO.CSS
+   Part 2 - Projects | Project Details | Resume
+========================================================== */
+
+
+/* ==========================================================
+   Projects Page
+========================================================== */
+
+.projects-header{
+    background:linear-gradient(135deg,#f8fbff,#eef5ff);
+    border:1px solid #dce8ff;
+    border-radius:24px;
+    padding:50px;
+    margin-bottom:45px;
+}
+
+.projects-header p{
+    max-width:650px;
+    color:#666;
+}
+
+.project-card{
+    background:#fff;
+    border-radius:22px;
+    padding:30px;
+    box-shadow:0 10px 25px rgba(0,0,0,.06);
+    transition:.35s;
+    display:flex;
+    flex-direction:column;
+    height:100%;
+    border:1px solid #edf3ff;
+}
+
+.project-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 20px 45px rgba(13,110,253,.15);
+}
+
+.project-title{
+    color:#212529;
+    font-weight:700;
+    text-decoration:none;
+    transition:.3s;
+}
+
+.project-title:hover{
+    color:#0d6efd;
+}
+
+.project-date{
+    color:#6c757d;
+    font-size:.9rem;
+    margin:12px 0;
+}
+
+.project-description{
+    color:#666;
+    line-height:1.8;
+    flex-grow:1;
+    margin-bottom:20px;
+}
+
+.tech-stack{
+    background:#f8fbff;
+    border-radius:14px;
+    padding:15px;
+    margin-bottom:20px;
+}
+
+.tech-label{
+    color:#0d6efd;
+    font-weight:600;
+}
+
+.github-btn{
+    width:46px;
+    height:46px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#eef5ff;
+    color:#0d6efd;
+    transition:.35s;
+}
+
+.github-btn:hover{
+    background:#0d6efd;
+    color:#fff;
+    transform:rotate(10deg);
+}
+
+.empty-projects{
+    background:#fff;
+    border-radius:22px;
+    padding:80px 30px;
+    text-align:center;
+    box-shadow:0 10px 25px rgba(0,0,0,.06);
+}
+
+
+/* ==========================================================
+   Project Details
+========================================================== */
+
+.project-hero{
+    background:linear-gradient(135deg,#f8fbff,#eef5ff);
+    border-radius:24px;
+    padding:50px;
+    border:1px solid #dce8ff;
+    margin-bottom:40px;
+}
+
+.project-hero p{
+    color:#666;
+}
+
+.project-details-card{
+    background:#fff;
+    border-radius:22px;
+    padding:35px;
+    box-shadow:0 10px 25px rgba(0,0,0,.06);
+    transition:.35s;
+}
+
+.project-details-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 20px 45px rgba(13,110,253,.15);
+}
+
+.section-title{
+    color:#0d6efd;
+    font-weight:700;
+    margin-bottom:20px;
+}
+
+.project-content{
+    white-space:pre-line;
+    line-height:1.9;
+    color:#555;
+}
+
+.project-info{
+    display:flex;
+    align-items:flex-start;
+    gap:18px;
+    margin-bottom:25px;
+}
+
+.project-info:last-child{
+    margin-bottom:0;
+}
+
+.project-icon{
+    width:55px;
+    height:55px;
+    border-radius:15px;
+    background:#eef5ff;
+    color:#0d6efd;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:1.25rem;
+    transition:.35s;
+}
+
+.project-info:hover .project-icon{
+    background:#0d6efd;
+    color:#fff;
+    transform:rotate(8deg);
+}
+
+
+/* ==========================================================
+   Resume
+========================================================== */
+
+.resume-header{
+    background:linear-gradient(135deg,#f8fbff,#eef5ff);
+    border-radius:24px;
+    padding:50px;
+    border:1px solid #dce8ff;
+    margin-bottom:50px;
+}
+
+.resume-summary{
+    max-width:760px;
+    color:#666;
+    line-height:1.8;
+}
+
+.contact-list{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-top:25px;
+}
+
+.contact-chip{
+    background:#fff;
+    border:1px solid #dce8ff;
+    border-radius:50px;
+    padding:10px 18px;
+    transition:.3s;
+}
+
+.contact-chip:hover{
+    background:#0d6efd;
+    color:#fff;
+}
+
+.resume-section{
+    margin-bottom:55px;
+}
+
+.resume-title{
+    border-left:5px solid #0d6efd;
+    padding-left:16px;
+    margin-bottom:28px;
+    font-weight:700;
+}
+
+.skill-pill{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:#eef5ff;
+    color:#0d6efd;
+    padding:10px 18px;
+    border-radius:50px;
+    margin:8px;
+    font-weight:600;
+    transition:.35s;
+}
+
+.skill-pill:hover{
+    background:#0d6efd;
+    color:#fff;
+    transform:translateY(-3px);
+}
+
+.resume-card{
+    background:#fff;
+    border-left:4px solid #0d6efd;
+    border-radius:0 18px 18px 0;
+    padding:25px;
+    margin-bottom:22px;
+    box-shadow:0 10px 25px rgba(0,0,0,.05);
+    transition:.35s;
+}
+
+.resume-card:hover{
+    transform:translateX(8px);
+    box-shadow:0 18px 35px rgba(13,110,253,.15);
+}
+
+.resume-card p{
+    color:#666;
+    line-height:1.8;
+}
+
+.resume-card h5{
+    margin-bottom:8px;
+}
+
+.empty-resume{
+    background:#fff;
+    border-radius:22px;
+    padding:80px 30px;
+    text-align:center;
+    box-shadow:0 10px 25px rgba(0,0,0,.06);
+}
+
+
+/* ==========================================================
+   Responsive
+========================================================== */
+
+@media (max-width:992px){
+
+    .projects-header,
+    .project-hero,
+    .resume-header{
+        padding:40px;
+    }
+
+}
+
+@media (max-width:768px){
+
+    .projects-header,
+    .project-hero,
+    .resume-header{
+        padding:30px;
+    }
+
+    .project-card,
+    .project-details-card,
+    .resume-card{
+        padding:25px;
+    }
+
+    .contact-list{
+        flex-direction:column;
+    }
+
+}
+
+@media (max-width:576px){
+
+    .skill-pill{
+        width:100%;
+        justify-content:center;
+        margin:6px 0;
+    }
+
+    .project-info{
+        flex-direction:column;
+    }
+
+}
+
+
+/* ==========================================================
+   PORTFOLIO.CSS
+   Part 3 - Contact | Dashboard | Messages | Directory
+========================================================== */
+
+
+/* ==========================================================
+   Contact
+========================================================== */
+
+.contact-section{
+    max-width:850px;
+    margin:auto;
+}
+
+.contact-card{
+    background:#fff;
+    border-radius:24px;
+    padding:45px;
+    box-shadow:0 12px 30px rgba(0,0,0,.06);
+    transition:.35s;
+}
+
+.contact-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 20px 45px rgba(13,110,253,.15);
+}
+
+.contact-title{
+    margin-bottom:10px;
+}
+
+.contact-subtitle{
+    color:#666;
+    margin-bottom:30px;
+}
+
+.contact-card .form-control,
+.contact-card textarea,
+.contact-card select{
+    border-radius:14px;
+}
+
+.contact-card textarea{
+    min-height:180px;
+}
+
+
+/* ==========================================================
+   Dashboard
+========================================================== */
+
+.dashboard-header{
+    background:linear-gradient(135deg,#f8fbff,#eef5ff);
+    border:1px solid #dce8ff;
+    border-radius:24px;
+    padding:40px;
+    margin-bottom:40px;
+}
+
+.dashboard-grid{
+    display:grid;
+    gap:30px;
+}
+
+.dashboard-card{
+    background:#fff;
+    border-radius:22px;
+    padding:30px;
+    box-shadow:0 10px 25px rgba(0,0,0,.06);
+    transition:.35s;
+}
+
+.dashboard-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 20px 45px rgba(13,110,253,.15);
+}
+
+.dashboard-card h5{
+    margin-bottom:25px;
+}
+
+.dashboard-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:14px 0;
+    border-bottom:1px solid #edf2f7;
+}
+
+.dashboard-item:last-child{
+    border-bottom:none;
+}
+
+.dashboard-item:hover{
+    padding-left:10px;
+    transition:.3s;
+}
+
+.dashboard-actions a{
+    margin-left:12px;
+}
+
+
+/* ==========================================================
+   Messages
+========================================================== */
+
+.messages-header{
+    background:linear-gradient(135deg,#f8fbff,#eef5ff);
+    border-radius:24px;
+    border:1px solid #dce8ff;
+    padding:40px;
+    margin-bottom:40px;
+}
+
+.message-card{
+    background:#fff;
+    border-radius:20px;
+    padding:28px;
+    box-shadow:0 10px 25px rgba(0,0,0,.06);
+    transition:.35s;
+    margin-bottom:25px;
+}
+
+.message-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 20px 45px rgba(13,110,253,.15);
+}
+
+.message-meta{
+    color:#6c757d;
+    font-size:.9rem;
+}
+
+.message-body{
+    white-space:pre-line;
+    line-height:1.8;
+    color:#555;
+    margin-top:18px;
+}
+
+.message-date{
+    font-size:.85rem;
+    color:#999;
+}
+
+
+/* ==========================================================
+   Portfolio Directory
+========================================================== */
+
+.directory-card{
+    background:#fff;
+    border:none;
+    border-radius:22px;
+    overflow:hidden;
+    box-shadow:0 12px 30px rgba(0,0,0,.06);
+    transition:.35s;
+    height:100%;
+}
+
+.directory-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 25px 50px rgba(13,110,253,.16);
+}
+
+.directory-image{
+    height:240px;
+    overflow:hidden;
+}
+
+.directory-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.4s;
+}
+
+.directory-card:hover .directory-image img{
+    transform:scale(1.08);
+}
+
+.directory-placeholder{
+    height:240px;
+    background:linear-gradient(135deg,#eef5ff,#dce8ff);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#0d6efd;
+    font-size:5rem;
+}
+
+.directory-body{
+    padding:25px;
+}
+
+.directory-body h5{
+    margin-bottom:10px;
+}
+
+.directory-body p{
+    color:#666;
+}
+
+
+/* ==========================================================
+   Empty States
+========================================================== */
+
+.empty-card{
+    background:#fff;
+    border-radius:24px;
+    padding:70px 40px;
+    text-align:center;
+    box-shadow:0 10px 25px rgba(0,0,0,.06);
+}
+
+.empty-card i{
+    font-size:4rem;
+    color:#0d6efd;
+    margin-bottom:20px;
+}
+
+.empty-card h4{
+    margin-bottom:15px;
+}
+
+.empty-card p{
+    color:#666;
+}
+
+
+/* ==========================================================
+   Small Animations
+========================================================== */
+
+.hover-lift{
+    transition:.35s;
+}
+
+.hover-lift:hover{
+    transform:translateY(-6px);
+}
+
+.hover-right{
+    transition:.35s;
+}
+
+.hover-right:hover{
+    transform:translateX(6px);
+}
+
+.icon-circle{
+    width:52px;
+    height:52px;
+    border-radius:50%;
+    background:#eef5ff;
+    color:#0d6efd;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:.35s;
+}
+
+.icon-circle:hover{
+    background:#0d6efd;
+    color:#fff;
+}
+
+
+/* ==========================================================
+   Responsive
+========================================================== */
+
+@media(max-width:992px){
+
+    .dashboard-header,
+    .messages-header,
+    .contact-card{
+        padding:35px;
+    }
+
+}
+
+@media(max-width:768px){
+
+    .dashboard-header,
+    .messages-header,
+    .contact-card{
+        padding:28px;
+    }
+
+    .dashboard-item{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:10px;
+    }
+
+    .dashboard-actions{
+        margin-top:8px;
+    }
+
+    .directory-image{
+        height:220px;
+    }
+
+}
+
+@media(max-width:576px){
+
+    .contact-card,
+    .dashboard-card,
+    .message-card,
+    .directory-body{
+        padding:22px;
+    }
+
+    .directory-image{
+        height:200px;
+    }
+
+    .empty-card{
+        padding:50px 20px;
+    }
+
+}
